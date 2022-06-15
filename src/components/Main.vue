@@ -1,7 +1,7 @@
 <template>
-  <main class="">
+  <main class="grid grid-cols-1 lg:grid-cols-2 lg:gap-10">
     <!-- Left Side -->
-    <div class="left w-full xl:w-7/12">
+    <div class="left">
       <h3 class="-mb-0 xl:-mb-12" ref="myName">I'm Hassan Shebbani</h3>
       <h1 ref="title">Creating Easier Solutions</h1>
       <p class="w-full xl:w-3/4" ref="subtitle">
@@ -45,7 +45,7 @@
       <div class="testimonial-container">
         <img ref="testImg" src="/assets/images/girl.jpg" alt="Some girl" />
         <div ref="testText" class="testimonial">
-          <p>We had reached a great height in atmosphere</p>
+          <p class="w-full mb-5 md:mb-10">We had reached a great height in atmosphere</p>
           <span>Celty Sturluson</span>
         </div>
       </div>
@@ -53,7 +53,11 @@
     <!--  -->
     <!-- Right Side -->
     <div class="right hidden lg:flex">
-      <img ref="rightImg" src="/assets/images/rdj.png" alt="Robert Downey Jr." />
+      <img
+        ref="rightImg"
+        src="/assets/images/rdj.png"
+        alt="Robert Downey Jr."
+      />
     </div>
   </main>
 </template>
@@ -78,14 +82,54 @@ const animateMain = () => {
       ease: "power2.inOut",
     },
   });
-  mainTl.fromTo(myName.value!, {opacity: 0, y: "50%"}, {opacity: 1, y: "0%"}, "+=1")
-  mainTl.fromTo(title.value!, {opacity: 0, y: "20%"}, {opacity: 1, y: "0%"}, "-=0.35")
-  mainTl.fromTo(subtitle.value!, {opacity: 0, y: "20%"}, {opacity: 1, y: "0%"}, "-=0.35")
-  mainTl.fromTo(ctaOrange.value!, {opacity: 0, y: "20%"}, {opacity: 1, y: "0%"}, "-=0.35")
-  mainTl.fromTo(ctaPortfolio.value!, {opacity: 0, x: "30%"}, {opacity: 1, x: "0%"}, "-=0.35")
-  mainTl.fromTo(testImg.value!, {opacity: 0, scale: 0}, {opacity: 1, scale: 1}, "-=0.35")
-  mainTl.fromTo(testText.value!, {opacity: 0, x: "10%"}, {opacity: 1, x: "0%"}, "-=0.35")
-  mainTl.fromTo(rightImg.value!, {opacity: 0, y: "20%"}, {opacity: 1, y: "0%"}, "+=1.35")
+  mainTl.fromTo(
+    myName.value!,
+    { opacity: 0, y: "50%" },
+    { opacity: 1, y: "0%" },
+    "+=1"
+  );
+  mainTl.fromTo(
+    title.value!,
+    { opacity: 0, y: "20%" },
+    { opacity: 1, y: "0%" },
+    "-=0.35"
+  );
+  mainTl.fromTo(
+    subtitle.value!,
+    { opacity: 0, y: "20%" },
+    { opacity: 1, y: "0%" },
+    "-=0.35"
+  );
+  mainTl.fromTo(
+    ctaOrange.value!,
+    { opacity: 0, y: "20%" },
+    { opacity: 1, y: "0%" },
+    "-=0.35"
+  );
+  mainTl.fromTo(
+    ctaPortfolio.value!,
+    { opacity: 0, x: "30%" },
+    { opacity: 1, x: "0%" },
+    "-=0.35"
+  );
+  mainTl.fromTo(
+    testImg.value!,
+    { opacity: 0, scale: 0 },
+    { opacity: 1, scale: 1 },
+    "-=0.35"
+  );
+  mainTl.fromTo(
+    testText.value!,
+    { opacity: 0, x: "10%" },
+    { opacity: 1, x: "0%" },
+    "-=0.35"
+  );
+  mainTl.fromTo(
+    rightImg.value!,
+    { opacity: 0, y: "20%" },
+    { opacity: 1, y: "0%" },
+    "+=1.35"
+  );
 };
 
 onMounted(async () => {
@@ -101,15 +145,12 @@ onMounted(async () => {
   justify-content: $justify;
 }
 main {
-  @include flex(row, center, space-between);
   width: 85%;
   min-height: 68vh;
   margin: auto;
   .left {
+    height: 100%;
     @include flex(column, flex-start, space-around);
-    // width: 60%;
-    min-height: 68vh;
-    // height: 100%;
     padding: 2rem 0rem;
     color: white;
     h3 {
@@ -117,7 +158,7 @@ main {
       font-size: 2rem;
     }
     h1 {
-      font-size: clamp(3rem, 10vw, 10rem);
+      font-size: clamp(3rem, 10vw, 9rem);
       line-height: clamp(5rem, 10vw, 9rem);
       font-weight: 700;
     }
@@ -164,20 +205,18 @@ main {
         border: 0.2rem black solid;
         outline: 0.3rem #ec787b solid;
         border-radius: 50%;
-        width: 8rem;
-        height: 8rem;
+        width: clamp(5rem, 10vw, 8rem);
+        height: clamp(5rem, 10vw, 8rem);
         object-fit: cover;
         margin-right: 2rem;
       }
       .testimonial {
         @include flex(column, flex-start, space-between);
         p {
-          width: 60%;
-          font-size: 2rem;
+          font-size: clamp(0.75rem, 5vw, 2rem);
           line-height: 3rem;
           font-weight: 400;
           opacity: 1;
-          margin-bottom: 3rem;
         }
         span {
           font-size: 1.5rem;
@@ -187,15 +226,9 @@ main {
     }
   }
   .right {
-    // height: ;
-    height: 70vh;
-    width: 40%;
-
     img {
       width: 100%;
       height: 100%;
-      // transform: scale(1.25);
-      margin-right: 10rem;
       object-fit: cover;
     }
   }

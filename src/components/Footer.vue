@@ -1,8 +1,15 @@
 <template>
-  <footer ref="footer">
+  <footer
+    class="grid grid-flow-col grid-rows-2 lg:grid-flow-row lg:grid-cols-2 lg:grid-rows-1 gap-10 lg:gap-20"
+    ref="footer"
+  >
     <!-- Left Side -->
-    <div class="left" ref="leftBase">
+    <div
+      class="left flex flex-col lg:flex-row items-center justify-center"
+      ref="leftBase"
+    >
       <svg
+        class="lg:mr-10"
         ref="laptopSVG"
         id="Layer_1"
         data-name="Layer 1"
@@ -17,8 +24,8 @@
           d="M2.54,65.44H15.13a2.19,2.19,0,0,1-1.63-2.1V2.17A2.18,2.18,0,0,1,15.67,0h91a2.18,2.18,0,0,1,2.17,2.17V63.33a2.17,2.17,0,0,1-1.63,2.1h13.16A2.54,2.54,0,0,1,122.88,68h0a2.54,2.54,0,0,1-2.54,2.54H2.54A2.54,2.54,0,0,1,0,68H0a2.54,2.54,0,0,1,2.54-2.53ZM61.3,15.85A17.21,17.21,0,1,1,44.09,33.06,17.21,17.21,0,0,1,61.3,15.85Zm6.13,18.27c.88-.56.88-1.19,0-1.69l-9.06-5.21c-.71-.45-1.45-.18-1.44.75l0,10.52c.06,1,.64,1.29,1.49.82l9-5.19ZM61.3,19.34A13.72,13.72,0,1,1,47.59,33.06,13.72,13.72,0,0,1,61.3,19.34ZM17.21,3.4H105.4V62.72H17.21V3.4Zm40.66,63H65a1.22,1.22,0,0,1,1.22,1.22h0A1.22,1.22,0,0,1,65,68.83H57.87a1.22,1.22,0,0,1-1.22-1.22h0a1.22,1.22,0,0,1,1.22-1.22Z"
         />
       </svg>
-      <div class="cta" ref="ctaConnect">
-        <h2>Connect With Me</h2>
+      <div class="cta flex flex-col items-center lg:items-start justify-between" ref="ctaConnect">
+        <h2 class="w-full lg:w-1/2">Connect With Me</h2>
         <div class="explore">
           <svg
             version="1.0"
@@ -45,12 +52,15 @@
         </div>
       </div>
     </div>
-
     <!-- Right Side -->
-    <div class="right">
-      <div class="highlight" ref="innovationHighlight">
+    <div class="right lg:grid grid-cols-2 gap-20">
+      <div
+        class="highlight flex flex-col justify-center items-center lg:items-start p-4 mb-10 lg:mb-0"
+        ref="innovationHighlight"
+      >
         <div class="title">
           <svg
+            class="mr-5"
             xmlns="http://www.w3.org/2000/svg"
             shape-rendering="geometricPrecision"
             text-rendering="geometricPrecision"
@@ -67,13 +77,17 @@
           </svg>
           <h2>Innovation</h2>
         </div>
-        <span
+        <span class="w-full text-center"
           >The sky was cloudless and of a deep dark blue the spectacle.</span
         >
       </div>
-      <div class="highlight" ref="spiritHighlight">
+      <div
+        class="highlight flex flex-col justify-center items-center lg:items-start p-4"
+        ref="spiritHighlight"
+      >
         <div class="title">
           <svg
+            class="mr-5"
             version="1.1"
             id="Layer_1"
             xmlns="http://www.w3.org/2000/svg"
@@ -93,7 +107,9 @@
           </svg>
           <h2>Spirit</h2>
         </div>
-        <span>Cloudless and of a deep dark blue the spectacle before us.</span>
+        <span class="w-full text-center"
+          >Cloudless and of a deep dark blue the spectacle before us.</span
+        >
       </div>
     </div>
   </footer>
@@ -118,12 +134,17 @@ const animateFooter = () => {
     },
   });
 
-  footerTl.fromTo(footer.value!, {y: "100%"}, {y: "0%"}, "+=4")
-  footerTl.fromTo(leftBase.value!, {x: "-100%"}, {x: "0%"}, "-=0.55")
-  footerTl.fromTo(laptopSVG.value!, {scale: 0}, {scale: 1}, "-=0.35")
-  footerTl.fromTo(ctaConnect.value!, {y: "200%"}, {y: "0%"}, "-=0.55")
-  footerTl.fromTo(innovationHighlight.value!, {y: "200%"}, {y: "0%"}, "-=0.55")
-  footerTl.fromTo(spiritHighlight.value!, {y: "200%"}, {y: "0%"}, "-=0.55")
+  footerTl.fromTo(footer.value!, { opacity: 0, y: "100%" }, { opacity: 1, y: "0%" }, "+=4");
+  footerTl.fromTo(leftBase.value!, { x: "-100%" }, { x: "0%" }, "-=0.55");
+  footerTl.fromTo(laptopSVG.value!, { scale: 0 }, { scale: 1 }, "-=0.35");
+  footerTl.fromTo(ctaConnect.value!, { y: "200%" }, { y: "0%" }, "-=0.55");
+  footerTl.fromTo(
+    innovationHighlight.value!,
+    { y: "200%" },
+    { y: "0%" },
+    "-=0.55"
+  );
+  footerTl.fromTo(spiritHighlight.value!, { y: "200%" }, { y: "0%" }, "-=0.55");
 };
 
 onMounted(async () => {
@@ -139,29 +160,19 @@ onMounted(async () => {
   justify-content: $justify;
 }
 footer {
-  @include flex(row, center, space-between);
-  min-height: 22vh;
-  width: 100%;
+  min-height: 24vh;
   background: #fff;
   .left {
-    @include flex(row, center, center);
     background: #8976f7;
-    min-height: 22vh;
-    width: 50%;
     color: #fff;
-    padding-right: 5rem;
     svg {
-      width: 30%;
-      height: 25%;
+      width: clamp(15rem, 10vw, 45rem);
+      height: clamp(10rem, 10vw, 40rem);
       fill-rule: evenodd;
-      margin-right: 3rem;
     }
     .cta {
-      @include flex(column, flex-start, space-between);
-
       h2 {
-        width: 50%;
-        font-size: 4rem;
+        font-size: clamp(2.5rem, 5vw, 4rem);
         font-weight: bold;
         line-height: 4rem;
         margin-bottom: 1.5rem;
@@ -182,28 +193,23 @@ footer {
     }
   }
   .right {
-    @include flex(row, center, center);
-    min-height: 22vh;
-    width: 50%;
     color: #000;
     .highlight {
-      @include flex(column, flex-start, space-between);
       .title {
         @include flex(row, center, center);
         margin-bottom: 2rem;
         svg {
-          width: 8rem;
-          height: 8rem;
-          margin-right: 2rem;
+          width: clamp(5rem, 10vw, 8rem);
+          height: clamp(5rem, 10vw, 8rem);
         }
         h2 {
-          font-size: 2.5rem;
+          font-size: clamp(2.5rem, 5vw, 4rem);
           font-weight: bold;
         }
       }
       span {
         font-size: 1.5rem;
-        width: 55%;
+        width: 75%;
       }
     }
   }

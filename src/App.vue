@@ -49,7 +49,7 @@
       </defs>
     </svg>
     <div class="outline-circle"></div>
-    <div class="head-orange-circle"></div>
+    <div class="head-orange-circle hidden lg:flex"></div>
     <div class="right-circle"></div>
     <div class="left-half-circle"></div>
     <div class="top-small-circle"></div>
@@ -68,13 +68,15 @@ import FooterVue from "./components/Footer.vue";
 
 const bg = ref<HTMLDivElement>();
 
-const animateBg = () => {
-  gsap.fromTo(
-    bg.value!,
-    0.75,
-    { zIndex: -10, opacity: 0, scale: 1.2 },
-    { zIndex: -10, opacity: 1, scale: 1, delay: 6, ease: "power2.inOut" }
-  );
+const animateBg = async () => {
+  await gsap
+    .fromTo(
+      bg.value!,
+      0.75,
+      { zIndex: -10, opacity: 0, scale: 1.2 },
+      { zIndex: -10, opacity: 1, scale: 1, delay: 6, ease: "power2.inOut" }
+    )
+    document.body.style.overflow = "auto";
 };
 
 onMounted(async () => {
@@ -83,12 +85,6 @@ onMounted(async () => {
 </script>
 
 <style lang="scss" scoped>
-/*
- nav 8vh
- main 70vh
- footer 22vh
-*/
-
 .bg-stuff {
   position: relative;
   .outline-circle,
@@ -105,19 +101,20 @@ onMounted(async () => {
   .outline-circle {
     top: 10rem;
     left: 37%;
-    width: 28rem;
-    height: 28rem;
+    width: clamp(10rem, 10vw, 28rem);
+    height: clamp(10rem, 10vw, 28rem);
     background: transparent;
-    border: 4rem white solid;
+    border: clamp(1rem, 5vw, 4rem) white solid;
   }
   .head-orange-circle {
-    top: 5rem;
-    right: 15%;
-    width: 42rem;
-    height: 42rem;
+    top: 6rem;
+    right: 18.5%;
+    width: clamp(10rem, 23vw, 42rem);
+    height: clamp(10rem, 23vw, 42rem);
+
     background: linear-gradient(to top, #ec787b, #fc4b51);
     opacity: 1;
-    z-index: -1;
+    z-index: -10;
   }
   .right-circle {
     top: 20rem;
@@ -146,20 +143,17 @@ onMounted(async () => {
   .svg-top-left,
   .svg-bottom-right {
     position: absolute;
-    width: 45rem;
-    height: 45rem;
     z-index: -1;
+    width: clamp(30rem, 30vw, 60rem);
+    height: clamp(30rem, 30vw, 60rem);
   }
   .svg-top-left {
-    width: 40rem;
-    height: 40rem;
     top: -10rem;
     left: 0%;
   }
   .svg-bottom-right {
-    top: 40rem;
-    // bottom: 50%;
-    right: -4%;
+    top: 50rem;
+    right: 0%;
   }
 }
 </style>
